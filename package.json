@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "jest --passWithNoTests",
+    "start": "webpack-dev-server --open",
+    "test": "jest --passWithNoTests --no-cache --runInBand",
     "test:watch": "npm test -- --watch",
     "test:staged": "npm jest -- --findRelatedTests",
     "test:ci": "npm test -- --coverage"
@@ -18,6 +19,7 @@
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/experimental-utils": "^4.31.1",
+    "clean-webpack-plugin": "^4.0.0",
     "eslint": "^7.9.0",
     "eslint-config-standard-with-typescript": "^21.0.1",
     "eslint-plugin-cypress": "^2.11.1",
