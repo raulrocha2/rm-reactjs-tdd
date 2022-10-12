@@ -10,18 +10,28 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['.ts', '.tsx', 'js', 'scss'],
+    extensions: ['.ts', '.tsx', '.js', 'scss'],
     alias: {
       '@': path.join(__dirname, 'src')
     }
+  },
+  devServer: {
+    historyApiFallback: true,
+    devMiddleware: {
+      publicPath: './public',
+      writeToDisk: true
+    }
+  },
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM'
   },
   module: {
     rules: [{
       test: /\.ts(x?)$/,
       loader: 'ts-loader',
       exclude: /node_modules/
-    },
-    {
+    }, {
       test: /\.scss$/,
       use: [{
         loader: 'style-loader'
@@ -35,16 +45,8 @@ module.exports = {
       }]
     }]
   },
-  devServer: {
-    contentBase: './public',
-    writeToDisk: true,
-    historyApiFallback: true
-  },
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM'
-  },
-  puglins: [
+  devtool: 'inline-source-map',
+  plugins: [
     new CleanWebpackPlugin()
   ]
 }
