@@ -5,7 +5,6 @@ import {
   Switch,
   Route
 } from 'react-router-dom'
-import '@/presentation/styles/global.scss'
 
 const Router: React.FC = () => {
   return (
