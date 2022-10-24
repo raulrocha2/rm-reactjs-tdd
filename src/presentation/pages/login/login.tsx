@@ -5,12 +5,12 @@ import Context from '@/presentation/contexts/form/form-context'
 
 const Login: React.FC = () => {
   const [state] = useState({
-    isLoading: false,
-    errorMessage: ''
+    isLoading: false
   })
   const [errorState] = useState({
     email: 'Campo obrigatório',
-    password: 'Campo obrigatório'
+    password: 'Campo obrigatório',
+    main: ''
   })
 
   return (
