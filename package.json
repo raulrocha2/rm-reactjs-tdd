@@ -58,12 +58,5 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^5.2.0",
     "yarn-upgrade-all": "^0.7.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npx lint-staged npm test",
-      "pre-push": "npm run test:ci && npm run test:cypress:ci", 
-      "...": "..."
-    }
   }
 }
