@@ -9,7 +9,10 @@
     "test": "jest --passWithNoTests --no-cache --runInBand",
     "test:watch": "npm test -- --watch",
     "test:staged": "npm jest -- --findRelatedTests",
-    "test:ci": "npm test -- --coverage"
+    "test:ci": "npm test -- --coverage",
+    "postinstall": "husky install",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.5.0",
@@ -58,5 +61,6 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^5.2.0",
     "yarn-upgrade-all": "^0.7.1"
-  }
+  },
+  "private": false
 }
