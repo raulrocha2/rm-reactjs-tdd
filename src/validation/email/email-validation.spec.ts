@@ -7,4 +7,10 @@ describe('EmailValidation', () => {
     const error = sut.validate('invalid-email.com')
     expect(error).toEqual(new InvalidFieldError())
   })
+
+  test('Should return null if email is valid', () => {
+    const sut = new EmailValidation('email')
+    const error = sut.validate('valid@email.com')
+    expect(error).toBeFalsy()
+  })
 })
