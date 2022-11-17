@@ -9,4 +9,11 @@ describe('MinLengthValidation', () => {
     const error = sut.validate(faker.random.alpha(3))
     expect(error).toEqual(new InvalidFieldError())
   })
+
+  test('Should return null if length of value is valid', () => {
+    const minLength = 6
+    const sut = new MinLengthValidation(faker.database.column(), minLength)
+    const error = sut.validate(faker.random.alpha(8))
+    expect(error).toBeFalsy()
+  })
 })
