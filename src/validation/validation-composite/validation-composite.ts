@@ -6,6 +6,10 @@ export class ValidationComposite implements IValidation {
     private readonly validators: IFieldValidation[]
   ) { }
 
+  static build (validators: IFieldValidation[]): ValidationComposite {
+    return new ValidationComposite(validators)
+  }
+
   validate (fieldName: string, fieldValue: string): string {
     const validators = this.validators.filter(v => v.field === fieldName)
     for (const validator of validators) {
