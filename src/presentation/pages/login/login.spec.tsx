@@ -47,7 +47,7 @@ const simulateValidSubmit = async (sut: RenderResult, email = faker.internet.ema
   populateEmailFIeld(sut, email)
   populatePasswordFIeld(sut, password)
   const form = sut.getByTestId('form')
-  fireEvent.submit(form)
+  await waitFor(() => fireEvent.submit(form))
   await waitFor(() => form)
 }
 
@@ -157,7 +157,7 @@ describe('Login Component', () => {
       Promise.reject(error)
     )
     await simulateValidSubmit(sut)
-    // testElementText(sut, 'main-error', error.message)
+    await waitFor(() => testElementText(sut, 'main-error', error.message))
     testerrorWrapChildCount(sut, 1)
   })
 
