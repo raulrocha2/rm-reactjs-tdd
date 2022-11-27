@@ -1,1 +1,1 @@
-export * from './iauthentication'
+export * from './i-authentication'
