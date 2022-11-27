@@ -46,7 +46,7 @@ const Login: React.FC<Props> = ({ validation, authentication, saveAccessToken }:
           email: state.email,
           password: state.password
         })
-      saveAccessToken.save(account.accessToken)
+      await saveAccessToken.save(account.accessToken)
       history.replace('/')
     } catch (error) {
       setState({
