@@ -3,15 +3,16 @@ import Styles from './login-styles.scss'
 import { Footer, FormStatus, Input, Header } from '@/presentation/components'
 import Context from '@/presentation/contexts/form/form-context'
 import { IValidation } from '@/presentation/protocols/validaion'
-import { IAuthentication } from '@/domain/usecases'
+import { IAuthentication, ISaveAccessToken } from '@/domain/usecases'
 import { Link, useHistory } from 'react-router-dom'
 
 type Props = {
   validation: IValidation
   authentication: IAuthentication
+  saveAccessToken: ISaveAccessToken
 }
 
-const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
+const Login: React.FC<Props> = ({ validation, authentication, saveAccessToken }: Props) => {
   const history = useHistory()
   const [state, setState] = useState({
     isLoading: false,
@@ -45,7 +46,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
           email: state.email,
           password: state.password
         })
-      localStorage.setItem('accessToken', account.accessToken)
+      saveAccessToken.save(account.accessToken)
       history.replace('/')
     } catch (error) {
       setState({
