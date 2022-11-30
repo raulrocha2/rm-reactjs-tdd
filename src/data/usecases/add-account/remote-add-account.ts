@@ -1,5 +1,5 @@
 import { HttpStatusCode, IHttpPostClient } from "@/data/protocols/http";
-import { UnexpectedError } from "@/domain/errors";
+import { EmailInUseError, UnexpectedError } from "@/domain/errors";
 import { AccountModel } from "@/domain/models/account-model";
 import { AddAccountParams, AuthenticationParams, IAddAccount } from "@/domain/usecases";
 
@@ -18,6 +18,9 @@ export class RemoteAddAccount implements IAddAccount {
       case HttpStatusCode.ok:
         return httpResponse.body
         
+      case HttpStatusCode.forbidden:
+        throw new EmailInUseError()
+
       default:
         throw new UnexpectedError()
     }
