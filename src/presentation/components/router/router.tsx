@@ -1,3 +1,4 @@
+import { Signup } from '@/presentation/pages'
 import React from 'react'
 import {
   BrowserRouter,
@@ -14,6 +15,8 @@ const Router: React.FC<Props> = ({ makeLogin }: Props) => {
    <BrowserRouter>
     <Switch>
       <Route path="/login" component={makeLogin} />
+      <Route path="/signup" component={Signup} />
+
     </Switch>
    </BrowserRouter>
   )
