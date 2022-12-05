@@ -15,9 +15,9 @@ export const mockAccountModel = (): AccountModel => ({
 export const mockAddAccount = (): AddAccountParams => {
   const password = faker.internet.password()
   return {
-  name: faker.name.fullName(),
-  email: faker.internet.email(),
-  password: faker.internet.password(),
-  passwordConfimation: password
+    name: faker.name.fullName(),
+    email: faker.internet.email(),
+    password: faker.internet.password(),
+    passwordConfimation: password
   }
 }

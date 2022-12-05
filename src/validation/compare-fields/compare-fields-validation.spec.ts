@@ -1,6 +1,6 @@
-import { faker } from "@faker-js/faker"
-import { InvalidFieldError } from "../errors"
-import { CompareFieldsValidation } from "./compare-fields-validation."
+import { faker } from '@faker-js/faker'
+import { InvalidFieldError } from '../errors'
+import { CompareFieldsValidation } from './compare-fields-validation.'
 
 const makeSut = (valueToCompare: string): CompareFieldsValidation => new CompareFieldsValidation(faker.database.column(), valueToCompare)
 
@@ -10,7 +10,7 @@ describe('CompareFieldValidation', () => {
     const error = sut.validate('')
     expect(error).toEqual(new InvalidFieldError())
   })
-  
+
   test('Should return falsy if compare is valid', () => {
     const valueToCompare = faker.random.word()
     const sut = makeSut(valueToCompare)

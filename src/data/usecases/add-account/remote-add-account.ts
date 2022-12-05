@@ -1,7 +1,7 @@
-import { HttpStatusCode, IHttpPostClient } from "@/data/protocols/http";
-import { EmailInUseError, UnexpectedError } from "@/domain/errors";
-import { AccountModel } from "@/domain/models/account-model";
-import { AddAccountParams, AuthenticationParams, IAddAccount } from "@/domain/usecases";
+import { HttpStatusCode, IHttpPostClient } from '@/data/protocols/http'
+import { EmailInUseError, UnexpectedError } from '@/domain/errors'
+import { AccountModel } from '@/domain/models/account-model'
+import { AddAccountParams, AuthenticationParams, IAddAccount } from '@/domain/usecases'
 
 export class RemoteAddAccount implements IAddAccount {
   constructor (
@@ -17,14 +17,12 @@ export class RemoteAddAccount implements IAddAccount {
     switch (httpResponse.statusCode) {
       case HttpStatusCode.ok:
         return httpResponse.body
-        
+
       case HttpStatusCode.forbidden:
         throw new EmailInUseError()
 
       default:
         throw new UnexpectedError()
     }
-   
   }
-
 }
