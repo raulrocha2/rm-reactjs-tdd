@@ -35,7 +35,7 @@ describe('Signup Component', () => {
     Helper.testButtonisDisabled(sut, 'submit', true)
     Helper.testStatusField(sut, 'name', validationError)
     Helper.testStatusField(sut, 'email', validationError)
-    Helper.testStatusField(sut, 'password', 'Campo obrigatório')
+    Helper.testStatusField(sut, 'password', validationError)
     Helper.testStatusField(sut, 'passwordConfirmation', 'Campo obrigatório')
   })
 
@@ -51,5 +51,12 @@ describe('Signup Component', () => {
     const { sut } = makeSut({ validationError })
     Helper.populateField(sut, 'email')
     Helper.testStatusField(sut, 'email', validationError)
+  })
+
+  test('Should show password error if Validation  fails', () => {
+    const validationError = faker.random.words(2)
+    const { sut } = makeSut({ validationError })
+    Helper.populateField(sut, 'password')
+    Helper.testStatusField(sut, 'password', validationError)
   })
 })
