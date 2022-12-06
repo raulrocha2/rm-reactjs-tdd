@@ -39,19 +39,9 @@ const makeSut = (params?: SutParams): SutTypes => {
   }
 }
 
-const populateEmailFIeld = (sut: RenderResult, email = faker.internet.email()): void => {
-  const emailInput = sut.getByTestId('email')
-  fireEvent.input(emailInput, { target: { value: email } })
-}
-
-const populatePasswordFIeld = (sut: RenderResult, password = faker.internet.password()): void => {
-  const passwordInput = sut.getByTestId('password')
-  fireEvent.input(passwordInput, { target: { value: password } })
-}
-
 const simulateValidSubmit = async (sut: RenderResult, email = faker.internet.email(), password = faker.internet.password()): Promise<void> => {
-  populateEmailFIeld(sut, email)
-  populatePasswordFIeld(sut, password)
+  Helper.populateField(sut, 'email', email)
+  Helper.populateField(sut, 'password', password)
   const form = sut.getByTestId('form')
   await waitFor(() => fireEvent.submit(form))
   await waitFor(() => form)
@@ -82,14 +72,14 @@ describe('Login Component', () => {
   test('Should show email error if Validation  fails', () => {
     const validationError = faker.random.words(2)
     const { sut } = makeSut({ validationError })
-    populateEmailFIeld(sut)
+    Helper.populateField(sut, 'email')
     Helper.testStatusField(sut, 'email', validationError)
   })
 
   test('Should show password error Validation fails', () => {
     const validationError = faker.random.words(2)
     const { sut } = makeSut({ validationError })
-    populatePasswordFIeld(sut)
+    Helper.populateField(sut, 'password')
     Helper.testStatusField(sut, 'password', validationError)
   })
 
