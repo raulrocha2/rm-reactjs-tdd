@@ -83,16 +83,24 @@ describe('Login Component', () => {
     Helper.testStatusField(sut, 'password', validationError)
   })
 
-  test('Should show valid state if Validation succeeds', async () => {
+  test('Should show valid email state if Validation succeeds', async () => {
     const { sut } = makeSut()
     await simulateValidSubmit(sut)
+    Helper.populateField(sut, 'email')
     Helper.testStatusField(sut, 'email')
+  })
+
+  test('Should show valid password state if Validation succeeds', async () => {
+    const { sut } = makeSut()
+    await simulateValidSubmit(sut)
+    Helper.populateField(sut, 'password')
     Helper.testStatusField(sut, 'password')
   })
 
-  test('Should show valid state if Validation succeeds', async () => {
+  test('Should enable submit button if form is valid', async () => {
     const { sut } = makeSut()
-    await simulateValidSubmit(sut)
+    Helper.populateField(sut, 'email')
+    Helper.populateField(sut, 'password')
     Helper.testButtonisDisabled(sut, 'submit', false)
   })
 

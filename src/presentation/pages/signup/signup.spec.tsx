@@ -77,12 +77,27 @@ describe('Signup Component', () => {
     Helper.testStatusField(sut, 'passwordConfirmation', validationError)
   })
 
-  test('Should show valid state if Validation succeeds', async () => {
+  test('Should show valid name state if Validation succeeds', async () => {
     const { sut } = makeSut()
-    await simulateValidSubmit(sut)
+    Helper.populateField(sut, 'name')
     Helper.testStatusField(sut, 'name')
+  })
+
+  test('Should show valid email state if Validation succeeds', async () => {
+    const { sut } = makeSut()
+    Helper.populateField(sut, 'email')
     Helper.testStatusField(sut, 'email')
+  })
+
+  test('Should show valid password state if Validation succeeds', async () => {
+    const { sut } = makeSut()
+    Helper.populateField(sut, 'password')
     Helper.testStatusField(sut, 'password')
+  })
+
+  test('Should show valid passwordConfirmation state if Validation succeeds', async () => {
+    const { sut } = makeSut()
+    Helper.populateField(sut, 'passwordConfirmation')
     Helper.testStatusField(sut, 'passwordConfirmation')
   })
 })
