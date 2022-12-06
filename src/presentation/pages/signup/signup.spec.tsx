@@ -26,15 +26,15 @@ const makeSut = (params?: SutParams): SutTypes => {
   }
 }
 
-// const simulateValidSubmit = async (sut: RenderResult, name = faker.internet.userName(), email = faker.internet.email(), password = faker.internet.password()): Promise<void> => {
-//   Helper.populateField(sut, 'name', name)
-//   Helper.populateField(sut, 'email', email)
-//   Helper.populateField(sut, 'password', password)
-//   Helper.populateField(sut, 'passwordConfirmation', password)
-//   const form = sut.getByTestId('form')
-//   await waitFor(() => fireEvent.submit(form))
-//   await waitFor(() => form)
-// }
+const simulateValidSubmit = async (sut: RenderResult, name = faker.internet.userName(), email = faker.internet.email(), password = faker.internet.password()): Promise<void> => {
+  Helper.populateField(sut, 'name', name)
+  Helper.populateField(sut, 'email', email)
+  Helper.populateField(sut, 'password', password)
+  Helper.populateField(sut, 'passwordConfirmation', password)
+  const form = sut.getByTestId('form')
+  await waitFor(() => fireEvent.submit(form))
+  await waitFor(() => form)
+}
 
 describe('Signup Component', () => {
   afterEach(cleanup)
@@ -108,5 +108,11 @@ describe('Signup Component', () => {
     Helper.populateField(sut, 'password')
     Helper.populateField(sut, 'passwordConfirmation')
     Helper.testButtonisDisabled(sut, 'submit', false)
+  })
+
+  test('Should show spinner on submit', async () => {
+    const { sut } = makeSut()
+    await simulateValidSubmit(sut)
+    Helper.testElementsExists(sut, 'spinner')
   })
 })
