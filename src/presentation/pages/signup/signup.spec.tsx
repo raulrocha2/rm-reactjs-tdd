@@ -1,6 +1,6 @@
 import { Helper, ValidationStub } from '@/presentation/test'
 import { faker } from '@faker-js/faker'
-import { RenderResult, render, cleanup } from '@testing-library/react'
+import { RenderResult, render, cleanup, waitFor, fireEvent } from '@testing-library/react'
 import React from 'react'
 import Signup from './signup'
 
@@ -24,6 +24,16 @@ const makeSut = (params?: SutParams): SutTypes => {
   return {
     sut
   }
+}
+
+const simulateValidSubmit = async (sut: RenderResult, name = faker.internet.userName(), email = faker.internet.email(), password = faker.internet.password()): Promise<void> => {
+  Helper.populateField(sut, 'name', name)
+  Helper.populateField(sut, 'email', email)
+  Helper.populateField(sut, 'password', password)
+  Helper.populateField(sut, 'passwordConfirmation', password)
+  const form = sut.getByTestId('form')
+  await waitFor(() => fireEvent.submit(form))
+  await waitFor(() => form)
 }
 
 describe('Signup Component', () => {
@@ -65,5 +75,14 @@ describe('Signup Component', () => {
     const { sut } = makeSut({ validationError })
     Helper.populateField(sut, 'passwordConfirmation')
     Helper.testStatusField(sut, 'passwordConfirmation', validationError)
+  })
+
+  test('Should show valid state if Validation succeeds', async () => {
+    const { sut } = makeSut()
+    await simulateValidSubmit(sut)
+    Helper.testStatusField(sut, 'name')
+    Helper.testStatusField(sut, 'email')
+    Helper.testStatusField(sut, 'password')
+    Helper.testStatusField(sut, 'passwordConfirmation')
   })
 })

@@ -37,7 +37,7 @@ const Signup: React.FC<Props> = ({ validation }: Props) => {
     <div className={Styles.signup}>
       <Header />
       <Context.Provider value={{ state, setState }}>
-        <form className={Styles.form}>
+        <form data-testid="form" className={Styles.form}>
           <h2> Criar Conta </h2>
           <Input type="text" name="name" placeholder='Digite seu nome'/>
           <Input type="email" name="email" placeholder='Digite seu e-mail'/>
