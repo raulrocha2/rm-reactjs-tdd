@@ -25,8 +25,8 @@ const makeSut = (params?: SutParams): SutTypes => {
   validationStub.errorMessage = params?.validationError
   const sut = render(
     <Router history={history}>
-      <Login 
-      validation={validationStub} 
+      <Login
+      validation={validationStub}
       authentication={authenticationSpy}
       saveAccessToken={saveAccessTokenMock}
       />
@@ -85,13 +85,12 @@ const testButtonisDisabled = (sut: RenderResult, fieldName: string, isDisabled: 
 
 describe('Login Component', () => {
   afterEach(cleanup)
-  
+
   test('Should start with initial state', () => {
     const validationError = faker.random.words(2)
     const { sut } = makeSut({ validationError })
     testerrorWrapChildCount(sut, 0)
-    const submitButton = sut.getByTestId('submit') as HTMLButtonElement
-    expect(submitButton.disabled).toBe(true)
+    testButtonisDisabled(sut, 'submit', true)
     testStatusField(sut, 'email', validationError)
     testStatusField(sut, 'password', validationError)
   })
