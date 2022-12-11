@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Styles from './signup-styles.scss'
 import { Footer, FormStatus, Input, Header } from '@/presentation/components'
 import Context from '@/presentation/contexts/form/form-context'
@@ -81,7 +81,12 @@ const Signup: React.FC<Props> = ({ validation, addAccount, saveAccessToken }: Pr
             disabled={!!state.nameError || !!state.emailError || !!state.passwordError || !!state.passwordConfirmationError}
             type="submit"
           >Entrar</button>
-          <span className={Styles.link}>Voltar Para Login</span>
+          <Link
+            data-testid="login-link"
+            replace to="/login"
+            className={Styles.link}
+          > Voltar Para Login
+          </Link>
           <FormStatus />
         </form>
       </Context.Provider>
