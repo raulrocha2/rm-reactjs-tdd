@@ -1,5 +1,4 @@
-import { Helper, ValidationStub } from '@/presentation/test'
-import { AddAccountSpy } from '@/presentation/test/mock-add-account'
+import { Helper, ValidationStub, AddAccountSpy } from '@/presentation/test'
 import { faker } from '@faker-js/faker'
 import { RenderResult, render, cleanup, waitFor, fireEvent } from '@testing-library/react'
 import React from 'react'
@@ -133,5 +132,12 @@ describe('Signup Component', () => {
       password,
       passwordConfirmation: password
     })
+  })
+
+  test('Should call AddAccount only once', async () => {
+    const { sut, addAccountSpy } = makeSut()
+    await simulateValidSubmit(sut)
+    await simulateValidSubmit(sut)
+    expect(addAccountSpy.callsCount).toBe(1)
   })
 })
