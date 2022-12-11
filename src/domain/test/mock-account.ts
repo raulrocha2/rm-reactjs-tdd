@@ -18,6 +18,6 @@ export const mockAddAccount = (): AddAccountParams => {
     name: faker.name.fullName(),
     email: faker.internet.email(),
     password: faker.internet.password(),
-    passwordConfimation: password
+    passwordConfirmation: password
   }
 }

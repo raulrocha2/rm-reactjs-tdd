@@ -4,7 +4,7 @@ export type AddAccountParams = {
   name: string
   email: string
   password: string
-  passwordConfimation: string
+  passwordConfirmation: string
 }
 
 export interface IAddAccount {
